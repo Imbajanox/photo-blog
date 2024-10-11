@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jan-Alexander Amann - Fotografie Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Link to Google Font -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.min.js"></script>
+	<script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>Jan-Alexander Amann</h1>
+    <p>Fotografie Portfolio</p>
+</header>
+
+<section class="portfolio">
+    <div class="portfolio-item">
+        <img src="image1-min.jpg" alt="Description of photo 1" id="img1">
+        <div class="info">
+            <h2>Portät im Wald</h2>
+			<p id="exif1"><strong>Details:</strong> </p>
+		</div>
+    </div>
+	<div class="portfolio-item">
+        <img src="image2-min.jpg" alt="Description of photo 1" id="img2">
+        <div class="info">
+            <h2>Portät am Strand</h2>
+			<p id="exif2"><strong>Details:</strong> </p>
+		</div>
+    </div>
+	<div class="portfolio-item">
+        <img src="image3-min.jpg" alt="Description of photo 1" id="img3">
+        <div class="info">
+            <h2>Skeptische Möve</h2>
+			<p id="exif3"><strong>Details:</strong> </p>
+		</div>
+    </div>
+	<div class="portfolio-item">
+        <img src="image5-min.jpg" alt="Description of photo 1" id="img5">
+        <div class="info">
+            <h2>Brücke in Misdroy</h2>
+			<p id="exif5"><strong>Details:</strong> </p>
+		</div>
+    </div>
+	<div class="portfolio-item">
+        <img src="image6-min.jpg" alt="Description of photo 1" id="img6">
+        <div class="info">
+            <h2>Portät in Misdroy</h2>
+			<p id="exif6"><strong>Details:</strong> </p>
+		</div>
+    </div>
+	<div class="portfolio-item">
+        <img src="image7-min.jpg" alt="Description of photo 1" id="img7">
+        <div class="info">
+            <h2>Möve am Klavier</h2>
+			<p id="exif7"><strong>Details:</strong> </p>
+		</div>
+    </div>
+	<div class="portfolio-item">
+        <img src="image8-min.jpg" alt="Description of photo 1" id="img8">
+        <div class="info">
+            <h2>Misdroy</h2>
+			<p id="exif8"><strong>Details:</strong> </p>
+		</div>
+    </div>
+	
+    <!-- Add more portfolio items as needed -->
+</section>
+
+<footer>
+    <p>Finde mich hier:</p>
+    <p>
+        <a href="https://www.instagram.com/jaan_amann" target="_blank">Instagram</a> |
+        <a href="https://www.facebook.com/fb.me/JanAmannFoto" target="_blank">Facebook</a> |
+        <a href="https://www.flickr.com/photos/flickr.com/photos/201475390@N05" target="_blank">Flickr</a>
+    </p>
+</footer>
+
+
+<script>
+	function parseDate(s) {
+		var b = s.split(/\D/);
+		return new Date(b[0],b[1]-1,b[2],b[3],b[4],b[5]);
+	}
+
+    // Funktion zum Auslesen der EXIF-Daten für ein Bild
+    function readExifData(imageId, exifId) {
+        const imgElement = document.getElementById(imageId);
+        EXIF.getData(imgElement, function() {
+            const allExif = EXIF.getAllTags(this);
+			const exposure = 1 / 1/ allExif.ExposureTime;
+
+			const options = {
+				year: "numeric",
+				month: "long",
+				day: "numeric",
+			};
+
+            const exifInfo = `
+			<p><span class="iconify" data-icon="mdi-camera"></span> ${allExif.Make} ${allExif.Model}</p>
+			<p>${allExif.FocalLength}mm</p>
+			<p>f/${allExif.FNumber}</p>
+			<p>1/${exposure}s</p>
+			<p>ISO ${allExif.ISOSpeedRatings}</p>
+			<br>
+			<p>${parseDate(allExif.DateTimeOriginal).toLocaleString('de-DE', options)}</p>`;
+            document.getElementById(exifId).innerHTML = `<strong>Details:</strong> ${exifInfo}`;
+        });
+    }
+
+    // EXIF-Daten für jedes Bild auslesen
+    window.onload = function() {
+        readExifData('img1', 'exif1');
+		readExifData('img2', 'exif2');
+		readExifData('img3', 'exif3');
+		readExifData('img5', 'exif5');
+		readExifData('img6', 'exif6');
+		readExifData('img7', 'exif7');
+		readExifData('img8', 'exif8');
+        // Füge weitere Aufrufe für mehr Bilder hinzu
+		
+    };
+</script>
+
+</body>
+</html>

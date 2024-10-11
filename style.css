@@ -1,0 +1,107 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #333;
+    color: white;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+p {
+    font-size: 1.1em;
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+	margin: 5px;
+}
+
+.portfolio {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.portfolio-item {
+    display: flex; /* Change to flex for side-by-side layout */
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px; /* Set a maximum width for the card */
+}
+
+.portfolio-item img {
+    width: 55%; /* Use a percentage for responsive design */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure image fits nicely */
+}
+
+.info {
+    padding: 20px;
+    flex-grow: 1; /* Allow the info section to grow */
+}
+
+h2 {
+    margin: 0 0 10px; /* Margin below the title */
+}
+
+/* Media query for responsive design */
+@media (max-width: 768px) {
+    .portfolio-item {
+        flex-direction: column; /* Stack image and info vertically */
+        align-items: center; /* Center items */
+    }
+
+    .portfolio-item img {
+        width: 100%; /* Full width on small screens */
+        margin-bottom: 10px; /* Space between image and info */
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+ /* unvisited link */
+a:link {
+      color: white;
+    text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+      color: white;
+    text-decoration: none;
+}
+
+/* selected link */
+a:active {
+      color: white;
+    text-decoration: none;
+} 
